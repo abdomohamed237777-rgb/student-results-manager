@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تطبيق ويب لإدارة نتائج الطلاب وتفعيل لجنة الرأفة">
+  <title>نظام إدارة النتائج</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">نظام إدارة النتائج</a>
+      <span class="navbar-text text-white-50"> </span>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <header class="page-heading text-center mb-4">
+      <span class="eyebrow">لوحة التحكم</span>
+      <h1 class="display-6 fw-bold mt-2">إدارة نتائج الطلاب</h1>
+      <p class="text-secondary mb-0">أدخل بيانات الطالب، ثم اعرض تقرير لجنة الرأفة عند الحاجة.</p>
+    </header>
+
+    <div class="row g-4">
+      <section class="col-lg-5">
+        <div class="panel h-100">
+          <div class="panel-heading">
+            <div>
+              <h2 class="h5 mb-1">إضافة طالب جديد</h2>
+              <p class="small text-secondary mb-0">جميع الدرجات ونسبة الحضور من 0 إلى 100.</p>
+            </div>
+            <span class="heading-icon" aria-hidden="true">＋</span>
+          </div>
+
+          <div id="errorBox" class="alert alert-danger d-none" role="alert" aria-live="polite"></div>
+
+          <form id="studentForm" novalidate>
+            <div class="mb-3">
+              <label for="studentName" class="form-label">اسم الطالب</label>
+              <input id="studentName" class="form-control" type="text" placeholder="مثال: أحمد محمد" autocomplete="name" required>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-4">
+                <label for="grade1" class="form-label">المادة الأولى</label>
+                <input id="grade1" class="form-control" type="number" min="0" max="100" step="any" placeholder="0 - 100" required>
+              </div>
+              <div class="col-sm-4">
+                <label for="grade2" class="form-label">المادة الثانية</label>
+                <input id="grade2" class="form-control" type="number" min="0" max="100" step="any" placeholder="0 - 100" required>
+              </div>
+              <div class="col-sm-4">
+                <label for="grade3" class="form-label">المادة الثالثة</label>
+                <input id="grade3" class="form-control" type="number" min="0" max="100" step="any" placeholder="0 - 100" required>
+              </div>
+            </div>
+
+            <div class="mt-3 mb-4">
+              <label for="attendance" class="form-label">نسبة الحضور (%)</label>
+              <input id="attendance" class="form-control" type="number" min="0" max="100" step="any" placeholder="أدخل نسبة الحضور" required>
+            </div>
+
+            <button id="addStudentBtn" class="btn btn-primary w-100" type="submit">
+              إضافة طالب
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="col-lg-7">
+        <div class="panel mb-4">
+          <div class="panel-heading">
+            <div>
+              <h2 class="h5 mb-1">قائمة الطلاب</h2>
+              <p class="small text-secondary mb-0">الطلاب الذين تمت إضافتهم بنجاح.</p>
+            </div>
+            <span class="count-pill" id="studentCount">0 طالب</span>
+          </div>
+          <div id="studentsList" class="students-list">
+            <div class="empty-state" id="studentsEmpty">لم تتم إضافة أي طلاب حتى الآن.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading align-items-start">
+            <div>
+              <h2 class="h5 mb-1">لجنة الرأفة</h2>
+              <p class="small text-secondary mb-0">تُضاف 5 درجات إلى متوسط كل طالب يتراوح متوسطه بين 40 و49.</p>
+            </div>
+            <span class="heading-icon" aria-hidden="true">★</span>
+          </div>
+          <button id="mercyBtn" class="btn btn-outline-primary w-100 mb-3" type="button">
+            تفعيل لجنة الرأفة
+          </button>
+          <div id="reportBox" class="report-box" aria-live="polite">
+            <div class="empty-state">سيظهر التقرير النهائي هنا بعد تفعيل اللجنة.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="text-center text-secondary small mt-5">
+      نظام إدارة النتائج      
+    </footer>
+  </main>
+</body>
+</html>
